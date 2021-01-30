@@ -6,7 +6,7 @@ session_start();
 
 if(isset($_POST['btn-entrar'])){
 	$erros = array();
-	$login = mysqli_escape_string($connect, $_POST['user']);
+	$login = mysqli_escape_string($connect, $_POST['usuario']);
 	$senha = mysqli_escape_string($connect, $_POST['senha']);
 
 	if(empty($login) || empty($senha)){
@@ -26,8 +26,7 @@ if(isset($_POST['btn-entrar'])){
 				$_SESSION['logado'] = true;
 				$_SESSION['id_usuario'] = $dados['id'];
 				$_SESSION['nome'] = $dados['name'];
-				print_r($dados);
-				#header('Location: home.php');
+				header('Location: home.php');
 
 			}else{
 				$erros[] = "<li> Usuário ou senha inválidos </li>";
@@ -45,9 +44,14 @@ if(isset($_POST['btn-entrar'])){
 <head>
 	<meta charset="utf-8">
 	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1> LOGIN </h1>
+
+	<div>
+		<h1 id="titulo"> LOGIN </h1>
+		<p id="subtitulo"> Simples tela de login para fins de treinamento </p>
+	</div>
 
 	<?php
 		if(!empty($erros)){
@@ -57,12 +61,20 @@ if(isset($_POST['btn-entrar'])){
 		}
 	?>
 
-	<hr>
-
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-		Login: <input type="text" name="user"><br>
-		Senha: <input type="password" name="senha"><br>
-		<button type="submit" name="btn-entrar"> Entrar </button>
+		<fieldset>
+			<div class="campo">
+				<label> Usuário: </label>
+				<input type="text" name="usuario">
+			</div>
+			<div class="campo">
+				<label> Senha: </label>
+				<input type="password" name="senha">
+			</div>
+			<div class="campo">
+				<button type="submit" name="btn-entrar"> Entrar </button>
+			</div>
+		</fieldset>
 	</form>
 </body>
 </html>

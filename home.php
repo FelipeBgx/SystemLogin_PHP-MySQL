@@ -8,6 +8,6 @@ session_start();
 	<title> Página Restrita </title>
 </head>
 <body>
-	<h1> Hello <?php echo $_SESSION['id_usuario'];?>! </h1>
+	<p> Olá <?php echo $_SESSION['nome'];?>! </p>
 </body>
 </html>
