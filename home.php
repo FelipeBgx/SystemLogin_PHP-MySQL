@@ -9,5 +9,6 @@ session_start();
 </head>
 <body>
 	<p> Olá <?php echo $_SESSION['nome'];?>! </p>
+	<a href="sair.php"> Sair </a>
 </body>
 </html>
